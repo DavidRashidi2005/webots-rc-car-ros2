@@ -40,17 +40,23 @@ The vehicle model utilizes Ackermann steering geometry, realistic tire friction,
 
 ## Simulation Worlds
 
-The repository provides two simulation environments:
+The repository provides two simulation environments with ready-to-run physics, lighting, and camera configurations:
 
-| City Mat World (`city_mat.wbt`) | Race Track World (`race.wbt`) |
-| :---: | :---: |
-| ![City Mat World](docs/images/city_mat.jpg) | ![Race Track World](docs/images/race.jpg) |
-| Urban autonomous navigation, lane keeping, intersections, road signage, and tight turns. | High-speed track testing, trajectory optimization, and aggressive cornering. |
+### 1. City Mat World (`worlds/city_mat.wbt`)
+*Designed for urban autonomous navigation, lane keeping, intersection handling, and road sign detection.*
 
-Both worlds feature:
-- Centered camera viewpoints (press **F1** in Webots to restore default vehicle tracking view).
-- Invisible $1\text{ m}$ collision bedrock beneath the surface preventing vehicle ground drop or sinkage.
-- Calibrated contact properties (`MatSurface` friction $\mu = 0.85 - 0.90$).
+![Webots City Mat Simulation Interface](docs/images/webots_city_mat_gui.png)
+
+### 2. Race Track World (`worlds/race.wbt`)
+*Designed for high-speed trajectory tracking, cornering performance, and model predictive control.*
+
+![Webots Race Track Simulation Interface](docs/images/webots_race_gui.png)
+
+Both simulation environments feature:
+- **Built-in Live Camera Overlay**: Top-left viewport renders the vehicle's onboard $640 \times 540$ roof camera feed in real time.
+- **Centered Viewpoints**: Centered tracking viewpoint on the vehicle (press **F1** in Webots anytime to restore default vehicle view).
+- **Sub-surface Collision Bedrock**: $1\text{ m}$ collision bedrock beneath the surface preventing any chassis drop or wheel sinking.
+- **Calibrated Contact Mechanics**: `MatSurface` tire-road Coulomb friction calibrated to $\mu = 0.85 - 0.90$.
 
 ---
 
