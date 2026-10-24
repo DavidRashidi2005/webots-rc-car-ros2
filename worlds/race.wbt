@@ -1,0 +1,89 @@
+#VRML_SIM R2025a utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/vehicles/protos/bmw/BmwX5.proto"
+
+WorldInfo {
+  info [
+    "Race track mat from user picture (serpentine, 4 straights + hairpins)."
+    "Textured floor approach: exact visual match, flat physics."
+  ]
+  title "Race Mat"
+  ERP 0.6
+  basicTimeStep 10
+  lineScale 1
+  contactProperties [
+    ContactProperties {
+      material1 "MatSurface"
+      material2 "default"
+      coulombFriction [
+        0.9
+      ]
+      softCFM 1e-05
+      bumpSound ""
+      rollSound ""
+      slideSound ""
+    }
+  ]
+}
+Viewpoint {
+  orientation -0.159005 -0.037536 0.986564 3.599227
+  position 7.44 11.72 4.5
+  near 0.5
+  follow "vehicle"
+  followSmoothness 0.5
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+DEF MAT_GROUND Solid {
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColorMap ImageTexture {
+          url [
+            "textures/race_track.png"
+          ]
+        }
+        roughness 0.9
+        metalness 0
+      }
+      geometry Plane {
+        size 60 50
+      }
+      castShadows FALSE
+    }
+  ]
+  name "race_mat"
+  contactMaterial "MatSurface"
+  boundingObject Pose {
+    translation 0 0 -0.5
+    children [
+      Box {
+        size 60 50 1
+      }
+    ]
+  }
+  locked TRUE
+}
+DEF WEBOTS_VEHICLE0 BmwX5 {
+  translation -2.5617 6.7193 0.32
+  rotation 0 0 1 -3.0654
+  name "vehicle"
+  engineSound ""
+  controller "my_driver"
+  sensorsSlotTop [
+    Camera {
+      translation 1.2772 0 0.590328
+      rotation 0 1 0 0.25
+      name "camera"
+      fieldOfView 1.2
+      width 640
+      height 540
+      near 0.05
+      far 200
+    }
+  ]
+}

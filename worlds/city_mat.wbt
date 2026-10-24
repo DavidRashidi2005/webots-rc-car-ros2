@@ -1,0 +1,86 @@
+#VRML_SIM R2025a utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/vehicles/protos/bmw/BmwX5.proto"
+
+WorldInfo {
+  info [
+    "City mat from user picture (outer loop + inner grid + zebra crossings)."
+    "Textured floor approach: exact visual match, flat physics."
+  ]
+  title "City Mat"
+  ERP 0.6
+  basicTimeStep 10
+  lineScale 1
+  contactProperties [
+    ContactProperties {
+      material1 "MatSurface"
+      coulombFriction [
+        0.85
+      ]
+      softCFM 1e-05
+      bumpSound ""
+      rollSound ""
+      slideSound ""
+    }
+  ]
+}
+Viewpoint {
+  orientation 0.33511884636752975 -0.4051175503889135 -0.8506321938277331 4.74030263388619
+  position -6.816925432393252 -20.192845338363764 12.441230339286411
+  near 0.5
+  follow "vehicle"
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+DEF MAT_GROUND Solid {
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColorMap ImageTexture {
+          url [
+            "textures/city_mat.png"
+          ]
+        }
+        roughness 0.9
+        metalness 0
+      }
+      geometry Plane {
+        size 58 50
+      }
+      castShadows FALSE
+    }
+  ]
+  name "city_mat"
+  contactMaterial "MatSurface"
+  boundingObject Pose {
+    translation 0 0 -0.5
+    children [
+      Box {
+        size 58 50 1
+      }
+    ]
+  }
+  locked TRUE
+}
+DEF WEBOTS_VEHICLE0 BmwX5 {
+  translation -4.28151 -11.2233 0.32
+  rotation 0 0 1 1.5708
+  engineSound ""
+  controller "my_driver"
+  sensorsSlotTop [
+    Camera {
+      translation 1.2772 0 0.590328
+      rotation 0 1 0 0.25
+      name "camera"
+      fieldOfView 1.2
+      width 640
+      height 540
+      near 0.05
+      far 200
+    }
+  ]
+}
